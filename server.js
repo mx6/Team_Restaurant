@@ -14,19 +14,19 @@ app.use(express.json());
 // =============================================================
 var reservations = [
     {
-        id: "",
-        name: "",
-        email: "",
-        phone: ""
+        id: "robert",
+        name: "robert",
+        email: "robert@gmail.com",
+        phone: "132-456-4568"
     }
 ];
 
 var waitList = [
     {
-        id: "",
-        name: "",
-        email: "",
-        phone: ""
+        id: "hannah",
+        name: "hannah",
+        email: "hannah@gmail.com",
+        phone: "789-789-7899"
     }
 ];
 
@@ -47,6 +47,7 @@ app.get("/reserve", function(req, res) {
 // Displays a single character, or returns false
 app.get("/api/reserve/:reservations", function(req, res) {
     var chosen = req.params.reserve;
+    console.log(chosen);
 
     console.log(chosen);
 
@@ -61,14 +62,14 @@ app.get("/api/reserve/:reservations", function(req, res) {
 
 // Create New Characters - takes in JSON input
 // ===========================================================
-app.post("/api/reserve", function(req, res) {
+app.post("/api/tables", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
     var newReservation = req.body;
 
     // Using a RegEx Pattern to remove spaces from newCharacter
     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+    newReservation.id = newReservation.name.replace(/\s+/g, "").toLowerCase();
   
     console.log(newReservation);
   
