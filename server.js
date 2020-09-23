@@ -1,26 +1,44 @@
-// Require/import the HTTP module
-// hhtp (AKA webServer)
-var http = require("http");
+// Dependencies
+// ===========================================================
+var express = require("express");
 
-// Define a port to listen for incoming requests
-// http port 80
-// https port 443
+var app = express();
 var PORT = 3000;
 
-// Create a generic function to handle requests and responses
-function handleRequest(request, response) {
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-  // Send the below string to the client when the user visits the PORT URL
-  response.end("It Works!! Path Hit: " + request.url);
-}
+// (DATA)
+// =============================================================
+var reservations = [
+    {
+        id: "",
+        name: "",
+        email: "",
+        phone: ""
+    }
+]
 
-// Use the Node HTTP package to create our server.
-// Pass the handleRequest function to empower it with functionality.
-var server = http.createServer(handleRequest); // 'handleRequest' = the callback
-
-// Start our server so that it can begin listening to client requests.
-server.listen(PORT, function() {
-
-  // Log (server-side) when our server has started
-  console.log("Mia's web server is listening on: http://localhost:" + PORT);
+// Routes (express creates routes)
+// ===========================================================
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
+
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
+
+app.get("/reserve", function(req, res) {
+    res.sendFile(path.join(__dirname, "reserve.html"));
+});
+
+
+
+// Listener
+// ===========================================================
+app.listen(PORT, function() {
+console.log("App listening on PORT " + PORT);
+    });
+  
