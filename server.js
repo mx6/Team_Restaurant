@@ -5,7 +5,7 @@ var http = require("http");
 // Define a port to listen for incoming requests
 // http port 80
 // https port 443
-var PORT = 8080;
+var PORT = 3000;
 
 // Create a generic function to handle requests and responses
 function handleRequest(request, response) {
