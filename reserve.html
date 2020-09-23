@@ -77,6 +77,26 @@
 
   </div>
 
+  <script type="text/javascript">
+      // Get new reservation from input form
+      $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        id: $("#id").val().trim(),
+        name: $("#name").val().trim(),
+        email: $("#email").val().trim(),
+        phone: $("#phone").val().trim()
+      };
+
+    // add reservation to html
+    $.post("/api/reservations", newReservation)
+      .then(function(data) {
+        console.log("reserve.html", data);
+        alert("Adding reservation...");
+      });
+
+  </script>
+
 </body>
 
 </html>
